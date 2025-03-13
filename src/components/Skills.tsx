@@ -66,23 +66,6 @@ const skillCategories = [
       { name: 'Apache Kafka', level: 80 },
       { name: 'ActiveMQ', level: 75 }
     ]
-  },
-  {
-    name: 'Micro Services and Containerzation',
-    icon: <Box className="w-6 h-6" />,
-    skills: [
-      { name: 'Spring Cloud', level: 80 },
-      { name: 'Docker', level: 70 },
-      { name: 'Apache Kafka', level: 80 }
-    ]
-  },
-  {
-    name: 'Monitoring and Logging',
-    icon: <ScanEye className="w-6 h-6" />,
-    skills: [
-      { name: 'Prometheus', level: 60 },
-      { name: 'Grafana', level: 70 },
-    ]
   }
 ];
 
@@ -114,7 +97,7 @@ const Skills = () => {
                 <div className="p-3 bg-accent-primary/10 text-accent-primary rounded-lg">
                   {category.icon}
                 </div>
-                <h3 className="text-xl font-bold text-dark-50">{category.name}</h3>
+                <h3 className="text-xl font-bold text-dark-50 text-primary">{category.name}</h3>
               </div>
 
               <div className="space-y-6">

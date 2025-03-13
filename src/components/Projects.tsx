@@ -7,7 +7,7 @@ const projects = [
     title: 'Vendor Insurance Portal',
     description: 'The Vendor Insurance Portal aims to enhance efficiency, compliance, and transparency for both vendors and businesses in managing insurance-related documentation.',
     longDescription: 'The Vendor Insurance Portal is an online platform designed to manage and streamline the process of purchasing, verifying, and tracking insurance coverage for vendors working with businesses, contractors, or organizations. This portal serves as a centralized hub where vendors can upload their insurance documents, manage their coverage, and ensure compliance with organizational requirements. Businesses and clients can also review, approve, and maintain records of these insurance policies, ensuring that all vendors meet the necessary legal and operational requirements.',
-    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=800',
+    image: './insurance.jpg',
     technologies: ['React', 'SpringBoot', 'Micro Services', 'MongoDB', 'Redis', 'Spring WebFlux', 'GraphQL', 'Restful Framework', 'RabbitMQ', 'XML/JSON', 'JWT', 'Spring Cloud', 'Spring Security'],
     features: [
       'User authentication and authorization',
@@ -69,7 +69,7 @@ const Projects = () => {
       <section id="projects" className="py-20 bg-secondary">
         <div className="container mx-auto px-4">
           <motion.h2 
-            className="text-4xl font-bold text-center mb-16 text-primary"
+            className="text-4xl font-bold text-center mb-16 text-white"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}

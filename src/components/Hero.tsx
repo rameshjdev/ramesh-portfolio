@@ -38,7 +38,9 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.6 }}
           >
             <motion.a 
-              href="#" 
+              href="https://github.com/rameshjdev"
+              target='_blank'
+              rel='noopener noreferer'
               className="p-2 bg-primary text-secondary rounded-full hover:bg-primary/80 transition"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -46,7 +48,9 @@ const Hero = () => {
               <Github className="w-6 h-6" />
             </motion.a>
             <motion.a 
-              href="#" 
+              href="https://www.linkedin.com/in/ramesh-k-a95b55279/" 
+              target='_blank'
+              rel='noopener noreferrer'
               className="p-2 bg-primary text-secondary rounded-full hover:bg-primary/80 transition"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -54,7 +58,7 @@ const Hero = () => {
               <Linkedin className="w-6 h-6" />
             </motion.a>
             <motion.a 
-              href="#" 
+              href="#contact" 
               className="p-2 bg-primary text-secondary rounded-full hover:bg-primary/80 transition"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
