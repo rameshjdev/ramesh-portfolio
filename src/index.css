@@ -20,8 +20,8 @@
 }
 
 body {
-  background-color: #141D38;
-  color: #FCDB32;
+  background-color: #0F4C5C;
+  color: #FCA311;
 }
 
 /* Custom scrollbar */
@@ -30,11 +30,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #141D38;
+  background: #0F4C5C;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FCDB32;
+  background: #FCA311;
   border-radius: 4px;
 }
 

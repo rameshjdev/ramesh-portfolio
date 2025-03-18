@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#FCDB32',
-        secondary: '#141D38',
+        primary: '#FCA311',
+        secondary: '#0F4C5C',
         dark: {
           50: '#F8F9FA',
           100: '#E9ECEF',
@@ -16,12 +16,12 @@ export default {
           600: '#495057',
           700: '#343A40',
           800: '#212529',
-          900: '#141D38',
+          900: '#0F4C5C',
           950: '#0A0F1C',
         },
         accent: {
-          primary: '#FCDB32',
-          secondary: '#141D38',
+          primary: '#FCA311',
+          secondary: '#0F4C5C',
         },
       },
     },
