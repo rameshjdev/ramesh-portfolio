@@ -4,8 +4,8 @@ import { Database, KeyRound, Layout, MessagesSquare, Server, Terminal } from 'lu
 const skillCategories = [
   {
     name: 'Frontend Development',
-    icon: <Layout className="w-6 h-6" />,
-    backgroundImage: 'https://img.freepik.com/free-photo/modern-composition-with-blurred-amusement-park_23-2147917136.jpg',
+    icon: <Layout className="w-6 h-6" color='#2a9d8f'/>,
+    backgroundImage: 'https://img.freepik.com/free-vector/abstract-background-gradient-design-style_698780-823.jpg',
     skills: [
       { name: 'React.js', level: 70 },
       { name: 'JavaScript/TypeScript', level: 60 },
@@ -17,8 +17,8 @@ const skillCategories = [
   },
   {
     name: 'Backend Development',
-    icon: <Server className="w-6 h-6" />,
-    backgroundImage: 'https://img.freepik.com/free-photo/modern-composition-with-blurred-amusement-park_23-2147917136.jpg',
+    icon: <Server className="w-6 h-6" color='#e63946'/>,
+    backgroundImage: 'https://img.freepik.com/free-vector/abstract-background-gradient-design-style_698780-823.jpg',
     skills: [
       { name: 'Spring Boot', level: 100 },
       { name: 'RESTful APIs', level: 90 },
@@ -30,8 +30,8 @@ const skillCategories = [
   },
   {
     name: 'Database',
-    icon: <Database className="w-6 h-6" />,
-    backgroundImage: 'https://img.freepik.com/free-photo/modern-composition-with-blurred-amusement-park_23-2147917136.jpg',
+    icon: <Database className="w-6 h-6" color='#a7c957'/>,
+    backgroundImage: 'https://img.freepik.com/free-vector/abstract-background-gradient-design-style_698780-823.jpg',
     skills: [
       { name: 'MongoDB', level: 85 },
       { name: 'PostgreSQL', level: 80 },
@@ -42,8 +42,8 @@ const skillCategories = [
   },
   {
     name: 'DevOps & Tools',
-    icon: <Terminal className="w-6 h-6" />,
-    backgroundImage: 'https://img.freepik.com/free-photo/modern-composition-with-blurred-amusement-park_23-2147917136.jpg',
+    icon: <Terminal className="w-6 h-6" color='#f72585'/>,
+    backgroundImage: 'https://img.freepik.com/free-vector/abstract-background-gradient-design-style_698780-823.jpg',
     skills: [
       { name: 'Git', level: 90 },
       { name: 'Jenkins', level: 75 },
@@ -54,8 +54,8 @@ const skillCategories = [
   },
   {
     name: 'Authentication & Authorization',
-    icon: <KeyRound className="w-6 h-6" />,
-    backgroundImage: 'https://img.freepik.com/free-photo/modern-composition-with-blurred-amusement-park_23-2147917136.jpg',
+    icon: <KeyRound className="w-6 h-6" color='#679436'/>,
+    backgroundImage: 'https://img.freepik.com/free-vector/abstract-background-gradient-design-style_698780-823.jpg',
     skills: [
       { name: 'OAuth 2.0', level: 80 },
       { name: 'JWT', level: 90 },
@@ -64,8 +64,8 @@ const skillCategories = [
   },
   {
     name: 'Message Borkers',
-    icon: <MessagesSquare className="w-6 h-6" />,
-    backgroundImage: 'https://img.freepik.com/free-photo/modern-composition-with-blurred-amusement-park_23-2147917136.jpg',
+    icon: <MessagesSquare className="w-6 h-6" color='#2ec4b6'/>,
+    backgroundImage: 'https://img.freepik.com/free-vector/abstract-background-gradient-design-style_698780-823.jpg',
     skills: [
       { name: 'RabbitMQ', level: 80 },
       { name: 'Apache Kafka', level: 80 },
@@ -107,7 +107,7 @@ const Skills = () => {
               viewport={{ once: true }}
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-accent-primary/10 text-accent-primary rounded-lg">
+                <div className="p-3 bg-accent-green/5 text-accent-green rounded-lg">
                   {category.icon}
                 </div>
                 <h3 className="text-xl font-bold text-dark-50">{category.name}</h3>

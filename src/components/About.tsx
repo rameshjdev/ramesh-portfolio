@@ -22,7 +22,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold mb-6 text-primary">About Me</h2>
+            <h2 className="text-4xl font-bold mb-6 text-dark-50">About Me</h2>
             <p className="text-lg text-gray-300 mb-6 text-justify">
             Hi, I'm a Experienced Full Stack Java Developer with over six years of designing and implementing high-performance applications.
             Expertise in optimizing the codebase for robustness and scalability, while adept at managing complex technical challenges.
