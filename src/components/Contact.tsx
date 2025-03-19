@@ -75,7 +75,7 @@ const Contact = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <div className="w-12 h-12 bg-accent-primary/10 rounded-full flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-accent-primary" />
+                    <Mail className="w-6 h-6 text-accent-primary" color='#FF6B6B'/>
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-dark-100">Email</h4>
@@ -89,7 +89,7 @@ const Contact = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <div className="w-12 h-12 bg-accent-primary/10 rounded-full flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-accent-primary" />
+                    <Phone className="w-6 h-6 text-accent-primary" color='#8338EC'/>
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-dark-100">Phone</h4>
@@ -103,7 +103,7 @@ const Contact = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <div className="w-12 h-12 bg-accent-primary/10 rounded-full flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-accent-primary" />
+                    <MapPin className="w-6 h-6 text-accent-primary" color='#006d77'/>
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-dark-100">Location</h4>

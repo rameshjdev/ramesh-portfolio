@@ -7,7 +7,7 @@ const projects = [
     title: 'Vendor Insurance Portal',
     description: 'The Vendor Insurance Portal aims to enhance efficiency, compliance, and transparency for both vendors and businesses in managing insurance-related documentation.',
     longDescription: 'The Vendor Insurance Portal is an online platform designed to manage and streamline the process of purchasing, verifying, and tracking insurance coverage for vendors working with businesses, contractors, or organizations. This portal serves as a centralized hub where vendors can upload their insurance documents, manage their coverage, and ensure compliance with organizational requirements. Businesses and clients can also review, approve, and maintain records of these insurance policies, ensuring that all vendors meet the necessary legal and operational requirements.',
-    image: './insurance.jpg',
+    image: './vendor.jpg',
     technologies: ['React', 'SpringBoot', 'Micro Services', 'MongoDB', 'Redis', 'Spring WebFlux', 'GraphQL', 'Restful Framework', 'RabbitMQ', 'XML/JSON', 'JWT', 'Spring Cloud', 'Spring Security'],
     features: [
       'User authentication and authorization',
@@ -24,7 +24,7 @@ const projects = [
     title: 'E-Commerce Application',
     description: 'The E-Commerce Application is designed to offer a seamless shopping experience for customers while providing businesses and sellers with a powerful platform to manage their products and grow their online presence.',
     longDescription: 'The E-Commerce Application is a web and mobile-based platform designed to facilitate online buying and selling of products and services. The application enables users (both customers and sellers) to engage in seamless transactions, discover products, make payments, track orders, and manage inventory in a user-friendly environment. The system also includes features like personalized recommendations, customer reviews, order management, and secure payment gateways, ensuring an exceptional shopping experience for customers and robust tools for sellers.',
-    image: './commerce.jpg',
+    image: './shopping.jpg',
     technologies: ['React', 'Spring JPA', 'Rest API', 'Oracle Database', 'Kibana', 'CI/CD', 'SQL', 'Stored Procedures', 'Asynchronous Programming'],
     features: [
       'User Registartion & Profiles:',
@@ -46,7 +46,7 @@ const projects = [
     title: 'Digital Supply Chain Transformation',
     description: 'The Digital Supply Chain Transformation project aims to revolutionize the traditional supply chain model by integrating digital technologies and creating a more intelligent, responsive, and sustainable supply chain.',
     longDescription: 'The Digital Supply Chain Transformation project focuses on leveraging cutting-edge digital technologies to enhance the efficiency, visibility, and flexibility of supply chain operations.This transformation empowers organizations to anticipate disruptions, optimize inventory management, improve demand forecasting, and provide end-to-end visibility.',
-    image: './chain.jpg',
+    image: './supplychain.jpg',
     technologies: ['High Charts', 'Spring MVC', 'Chart.js', 'Spring Core', 'Rest API', 'JSM', 'Java Streams', 'OOP', 'Core Java'],
     features: [
       'Supply Chain Visibility Platforms',
