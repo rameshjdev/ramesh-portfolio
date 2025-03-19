@@ -1,18 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Code2, Home, User, Briefcase, Cpu, FolderGit2, Mail } from 'lucide-react';
-import { color, motion } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import {
+  Menu,
+  X,
+  Code2,
+  Home,
+  User,
+  Briefcase,
+  Cpu,
+  FolderGit2,
+  Mail,
+} from "lucide-react";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const menuItems = [
-    { name: 'Home', icon: Home, href: '#' },
-    { name: 'About', icon: User, href: '#about' },
-    { name: 'Experience', icon: Briefcase, href: '#experience', color:'#FCA311'},
-    { name: 'Skills', icon: Cpu, href: '#skills' },
-    { name: 'Projects', icon: FolderGit2, href: '#projects' },
-    { name: 'Contact', icon: Mail, href: '#contact' }
+    { name: "Home", icon: Home, href: "#", color: "#FF6B6B" },
+    { name: "About", icon: User, href: "#about", color: "#4ECDC4" },
+    {
+      name: "Experience",
+      icon: Briefcase,
+      href: "#experience",
+      color: "#45B7D1",
+    },
+    { name: "Skills", icon: Cpu, href: "#skills", color: "#96CEB4" },
+    { name: "Projects", icon: FolderGit2, href: "#projects", color: "#FFEEAD" },
+    { name: "Contact", icon: Mail, href: "#contact", color: "#D4A5A5" },
   ];
 
   useEffect(() => {
@@ -20,18 +35,22 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 0);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-secondary/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
-    }`}>
+    <nav
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-secondary/90 backdrop-blur-md shadow-lg"
+          : "bg-transparent"
+      }`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <motion.a 
-            href="#" 
+          <motion.a
+            href="#"
             className="flex items-center gap-2 group"
             whileHover={{ scale: 1.05 }}
           >
@@ -42,28 +61,35 @@ const Navbar = () => {
               Ramesh
             </span>
           </motion.a>
-          
+
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
             {menuItems.map((item, index) => (
               <motion.a
                 key={item.name}
                 href={item.href}
-                color={item.color}
-                className="text-gray-300 font-semibold hover:text-primary transition flex items-center gap-2 group"
+                className="text-gray-300 hover:text-primary transition flex items-center gap-2 group"
                 whileHover={{ y: -2 }}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
               >
-                <item.icon className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                {item.name}
+                <item.icon
+                  className="w-4 h-4 group-hover:rotate-12 transition-transform"
+                  style={{ color: item.color }}
+                />
+                <span
+                  className="hover:text-[color:var(--hover-color)]"
+                  style={{ "--hover-color": item.color } as React.CSSProperties}
+                >
+                  {item.name}
+                </span>
               </motion.a>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
-          <motion.button 
+          <motion.button
             className="md:hidden text-primary"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             whileHover={{ scale: 1.1 }}
@@ -75,7 +101,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <motion.div 
+          <motion.div
             className="md:hidden bg-secondary/95 backdrop-blur-md"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -86,12 +112,19 @@ const Navbar = () => {
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  color={item.color}
-                  className="flex items-center gap-3 px-3 py-2 text-gray-300 hover:text-primary hover:bg-primary/10 rounded-md transition"
+                  className="flex items-center gap-3 px-3 py-2 rounded-md transition"
+                  style={{
+                    backgroundColor: `${item.color}10`,
+                    color: item.color,
+                  }}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   onClick={() => setIsMenuOpen(false)}
+                  whileHover={{
+                    backgroundColor: `${item.color}20`,
+                    x: 10,
+                  }}
                 >
                   <item.icon className="w-5 h-5" />
                   {item.name}
