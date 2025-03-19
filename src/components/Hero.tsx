@@ -2,6 +2,13 @@ import React from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+/**
+ * The `Hero` component renders a hero section that appears at the top of the
+ * page. It features a centered title, a tagline, and a call-to-action button
+ * that links to the projects section. The component uses Framer Motion to animate
+ * the elements when they come into view.
+ * @returns {JSX.Element} The hero component.
+ */
 const Hero = () => {
   return (
     <section className="min-h-screen flex items-center bg-gradient-to-br from-secondary via-secondary to-dark-950">

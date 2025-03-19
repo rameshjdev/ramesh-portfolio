@@ -1,11 +1,11 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Box, Code2, Database, KeyRound, Layout, MessagesSquare, ScanEye, Server, Smartphone, Terminal } from 'lucide-react';
+import { Database, KeyRound, Layout, MessagesSquare, Server, Terminal } from 'lucide-react';
 
 const skillCategories = [
   {
     name: 'Frontend Development',
     icon: <Layout className="w-6 h-6" />,
+    backgroundImage: 'https://img.freepik.com/free-photo/modern-composition-with-blurred-amusement-park_23-2147917136.jpg',
     skills: [
       { name: 'React.js', level: 70 },
       { name: 'JavaScript/TypeScript', level: 60 },
@@ -18,6 +18,7 @@ const skillCategories = [
   {
     name: 'Backend Development',
     icon: <Server className="w-6 h-6" />,
+    backgroundImage: 'https://img.freepik.com/free-photo/modern-composition-with-blurred-amusement-park_23-2147917136.jpg',
     skills: [
       { name: 'Spring Boot', level: 100 },
       { name: 'RESTful APIs', level: 90 },
@@ -30,6 +31,7 @@ const skillCategories = [
   {
     name: 'Database',
     icon: <Database className="w-6 h-6" />,
+    backgroundImage: 'https://img.freepik.com/free-photo/modern-composition-with-blurred-amusement-park_23-2147917136.jpg',
     skills: [
       { name: 'MongoDB', level: 85 },
       { name: 'PostgreSQL', level: 80 },
@@ -41,6 +43,7 @@ const skillCategories = [
   {
     name: 'DevOps & Tools',
     icon: <Terminal className="w-6 h-6" />,
+    backgroundImage: 'https://img.freepik.com/free-photo/modern-composition-with-blurred-amusement-park_23-2147917136.jpg',
     skills: [
       { name: 'Git', level: 90 },
       { name: 'Jenkins', level: 75 },
@@ -52,6 +55,7 @@ const skillCategories = [
   {
     name: 'Authentication & Authorization',
     icon: <KeyRound className="w-6 h-6" />,
+    backgroundImage: 'https://img.freepik.com/free-photo/modern-composition-with-blurred-amusement-park_23-2147917136.jpg',
     skills: [
       { name: 'OAuth 2.0', level: 80 },
       { name: 'JWT', level: 90 },
@@ -61,6 +65,7 @@ const skillCategories = [
   {
     name: 'Message Borkers',
     icon: <MessagesSquare className="w-6 h-6" />,
+    backgroundImage: 'https://img.freepik.com/free-photo/modern-composition-with-blurred-amusement-park_23-2147917136.jpg',
     skills: [
       { name: 'RabbitMQ', level: 80 },
       { name: 'Apache Kafka', level: 80 },
@@ -69,6 +74,13 @@ const skillCategories = [
   }
 ];
 
+/**
+ * The `Skills` component renders a section about the technical skills that I have.
+ * It features a grid of cards that display the skill category name, icon, and
+ * skills with levels. When a card is hovered, the skills will slide in from the
+ * left.
+ * @returns {React.ReactElement} The skills section.
+ */
 const Skills = () => {
   return (
     <section id="skills" className="py-20 bg-dark-900">
@@ -87,7 +99,8 @@ const Skills = () => {
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={categoryIndex}
-              className="bg-dark-800/50 backdrop-blur-sm rounded-xl p-6 border border-dark-700"
+              className="bg-dark-800/50 backdrop-blur-none rounded-xl p-6 border border-dark-700 shadow-lg bg-cover bg-no-repeat bg-center"
+              style={{ backgroundImage: `url(${category.backgroundImage})`}}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
@@ -97,7 +110,7 @@ const Skills = () => {
                 <div className="p-3 bg-accent-primary/10 text-accent-primary rounded-lg">
                   {category.icon}
                 </div>
-                <h3 className="text-xl font-bold text-dark-50 text-primary">{category.name}</h3>
+                <h3 className="text-xl font-bold text-dark-50">{category.name}</h3>
               </div>
 
               <div className="space-y-6">

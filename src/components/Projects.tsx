@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Github, ExternalLink, X } from 'lucide-react';
+import { useState } from 'react';
+import {  X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const projects = [
@@ -61,6 +61,18 @@ const projects = [
   }
 ];
 
+/**
+ * The `Projects` component renders a section showcasing the developer's featured projects.
+ * It displays a grid of project cards, each containing an image, title, description, and 
+ * technologies used. When a project is clicked, a detailed view of the project is shown 
+ * in a modal, featuring a longer description, key features, and technologies used.
+ * 
+ * The component uses Framer Motion for animations, including fade-ins and hover effects.
+ * It utilizes a state to keep track of the selected project for the modal display.
+ *
+ * @returns {JSX.Element} The projects section with a modal for project details.
+ */
+
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -81,8 +93,8 @@ const Projects = () => {
             {projects.map((project, index) => (
               <motion.div 
                 key={index} 
-                className="bg-dark-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-dark-700 shadow-lg cursor-pointer"
-                initial={{ opacity: 0, y: 50 }}
+                className="bg-dark-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-dark-700 shadow-lg cursor-pointer bg-image-./chain.jpg"
+                initial={{ opacity: 0, y: 50 }} 
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 viewport={{ once: true }}

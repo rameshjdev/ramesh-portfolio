@@ -1,6 +1,9 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
+/**
+ * A component that renders a section about the developer.
+ * @returns {React.ReactElement} The about section.
+ */
 const About = () => {
   return (
     <section id="about" className="py-20 bg-secondary">

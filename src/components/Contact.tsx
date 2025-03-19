@@ -3,6 +3,15 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 
+/**
+ * The `Contact` component renders a contact section for users to reach out.
+ * It includes a form for submitting messages via EmailJS, and displays contact
+ * information such as email, phone, and location. The form features animated
+ * input fields and a responsive design, with state management for submission
+ * status. Users can submit their name, email, and message, and receive feedback
+ * on successful or failed message delivery.
+ */
+
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);

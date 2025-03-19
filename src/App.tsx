@@ -8,6 +8,12 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
+/**
+ * The main app component, which simply renders all the other components.
+ *
+ * The outermost div is given the class "min-h-screen bg-secondary" to make the
+ * background color fill the entire screen.
+ */
 function App() {
   return (
     <div className="min-h-screen bg-secondary">

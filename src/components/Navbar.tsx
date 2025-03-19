@@ -12,6 +12,16 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 
+/**
+ * A responsive navigation bar component with a hamburger menu on mobile devices.
+ *
+ * Features:
+ * - A fixed position nav bar that changes its background color on scroll
+ * - A hamburger menu on mobile devices that slides in from the top
+ * - Animated menu items that slide in from the left on desktop
+ * - A gradient background on the logo
+ * - A hover effect on the logo that rotates it slightly
+ */
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,6 +41,14 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
+/*************  ✨ Codeium Command ⭐  *************/
+/**
+ * Updates the `isScrolled` state based on the current scroll position.
+ * Sets `isScrolled` to true if the window's vertical scroll position is greater than 0,
+ * indicating that the user has scrolled down the page.
+ */
+
+/******  94f73f17-9745-4596-9e0d-87d970e0af92  *******/
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };

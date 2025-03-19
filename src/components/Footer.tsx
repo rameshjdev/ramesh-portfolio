@@ -2,6 +2,13 @@ import React from 'react';
 import { Github, Linkedin, Heart, Target} from 'lucide-react';
 import { motion } from 'framer-motion';
 
+/**
+ * The footer component, which contains the social links and the copyright information.
+ *
+ * The component will animate when it comes into view.
+ *
+ * @returns {JSX.Element} The footer component.
+ */
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   

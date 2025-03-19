@@ -1,4 +1,3 @@
-import React from 'react';
 import { Briefcase, GraduationCap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -40,6 +39,10 @@ const experiences = [
   }
 ];
 
+/**
+ * A component that renders a section about the developer's experience and education.
+ * @returns {React.ReactElement} The experience and education section.
+ */
 const Experience = () => {
   return (
     <section id="experience" className="py-20 bg-dark-900">
@@ -89,7 +92,7 @@ const Experience = () => {
                 </span>
                 <h3 className="text-xl font-bold mt-2 text-gray-200">{exp.title}</h3>
                 <p className="text-gray-400 font-medium">{exp.company}</p>
-                <p className="text-gray-500 mt-2">{exp.description}</p>
+  
               </motion.div>
             </motion.div>
           ))}
