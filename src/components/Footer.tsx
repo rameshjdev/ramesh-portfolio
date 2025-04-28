@@ -1,5 +1,4 @@
-import React from 'react';
-import { Github, Linkedin, Heart, Target} from 'lucide-react';
+import { Github, Heart} from 'lucide-react';
 import { motion } from 'framer-motion';
 
 /**

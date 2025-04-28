@@ -1,6 +1,5 @@
-import { Briefcase, GraduationCap, InfoIcon } from 'lucide-react';
+import { Briefcase, GraduationCap } from 'lucide-react';
 import { motion } from 'framer-motion';
-import React from 'react';
 
 const experiences = [
   {
@@ -45,75 +44,101 @@ const experiences = [
  * @returns {React.ReactElement} The experience and education section.
  */
 const Experience = () => {
-  const [hoveredExperience, setHoveredExperience] = React.useState<null | {companyDescription: string}>(null);
   return (
-    <section id="experience" className="py-20 bg-dark-900">
+    <section id="experience" className="py-20 bg-gradient-to-b from-dark-900 to-dark-800">
       <div className="container mx-auto px-4">
-        <motion.h2
-          className="text-4xl font-bold text-center mb-16 text-dark-50"
+        <motion.div
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          Experience & Education
-        </motion.h2>
+          <h2 className="text-5xl font-bold text-white mb-4">
+            Experience & <span className="text-primary">Education</span>
+          </h2>
+          <div className="w-24 h-1 bg-primary mx-auto rounded-full mb-6"></div>
+          <p className="text-gray-300 max-w-2xl mx-auto">
+            My professional journey and academic background that have shaped my career
+          </p>
+        </motion.div>
+
         <div className="relative">
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/20"></div>
+          {/* Timeline center line with gradient */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary/80 via-primary/50 to-primary/20 rounded-full"></div>
 
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              className={`relative mb-12 ${index % 2 === 0 ? 'md:ml-auto md:pl-8' : 'md:mr-auto md:pr-8'} md:w-1/2`}
-              initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              className={`relative mb-16 ${index % 2 === 0 ? 'md:ml-auto md:pl-12' : 'md:mr-auto md:pr-12'} md:w-1/2`}
+              initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50, y: 20 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
               viewport={{ once: true }}
             >
+              {/* Timeline node */}
               <motion.div
-                className={`absolute left-1/2 transform -translate-x-1/2 -translate-y-4 w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/20`}
+                className={`absolute left-1/2 transform -translate-x-1/2 -translate-y-4 w-10 h-10 rounded-full flex items-center justify-center z-10`}
+                style={{ 
+                  background: `linear-gradient(135deg, ${exp.type === 'education' ? '#a7c957' : '#e63946'}, ${exp.type === 'education' ? '#679436' : '#9d0208'})` 
+                }}
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 200
+                }}
                 viewport={{ once: true }}
+                whileHover={{ 
+                  scale: 1.2,
+                  boxShadow: `0 0 20px 2px ${exp.type === 'education' ? '#a7c95780' : '#e6394680'}`
+                }}
               >
                 {exp.type === 'education' ? (
-                  <GraduationCap className="w-4 h-4 text-secondary" />
+                  <GraduationCap className="w-5 h-5 text-white" />
                 ) : (
-                  <Briefcase className="w-4 h-4 text-secondary" />
+                  <Briefcase className="w-5 h-5 text-white" />
                 )}
               </motion.div>
 
+              {/* Content card */}
               <motion.div
-                className="bg-dark-800/50 backdrop-blur-sm p-6 rounded-lg border border-dark-700 shadow-lg"
-                whileHover={{ scale: 1.02 }}
+                className="bg-dark-800/80 backdrop-blur-md p-8 rounded-2xl border border-dark-700/50 shadow-xl relative z-0 overflow-hidden"
+                whileHover={{ 
+                  y: -5,
+                  boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 15px 1px ${exp.type === 'education' ? '#a7c95730' : '#e6394630'}`
+                }}
                 transition={{ duration: 0.3 }}
               >
-                <span className="text-primary font-semibold">
+                {/* Decorative accent */}
+                <div 
+                  className="absolute top-0 left-0 w-full h-1 rounded-t-2xl"
+                  style={{ 
+                    background: `linear-gradient(to right, ${exp.type === 'education' ? '#a7c957' : '#e63946'}, transparent)` 
+                  }}
+                ></div>
+                
+                {/* Year badge */}
+                <motion.span 
+                  className="inline-block px-4 py-1 rounded-full text-sm font-medium mb-4"
+                  style={{ 
+                    background: `linear-gradient(135deg, ${exp.type === 'education' ? '#a7c95720' : '#e6394620'}, transparent)`,
+                    color: exp.type === 'education' ? '#a7c957' : '#e63946',
+                    border: `1px solid ${exp.type === 'education' ? '#a7c95740' : '#e6394640'}`
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                >
                   {exp.year}
-                </span>
-                <h3 className="text-xl font-bold mt-2 text-gray-200">{exp.title}</h3>
-                <p className="text-gray-400 font-semibold">{exp.company}
-                <motion.button
-                    className='ml-2 mt-4 text-sm text-primary hover:text-primary/80'
-                    whileHover={{ scale: 1.1 }}
-                    onMouseOver={() => {
-                      setHoveredExperience(exp);
-                    }}
-                    onMouseOut={() => setHoveredExperience(null)}
-                  >
-                    <InfoIcon size={16} />
-                  </motion.button>
-                  {hoveredExperience === exp && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className="absolute z-50 bg-primary/100 shadow-md p-4 rounded-lg w-100 text-sm"
-                    >
-                      <p className="text-gray-600 text-align-justify">{exp.companyDescription}</p>
-                    </motion.div>
-                  )}
+                </motion.span>
+                
+                <h3 className="text-2xl font-bold mt-2 text-white mb-2">{exp.title}</h3>
+                <p className="text-gray-300 font-medium">{exp.company}</p>
+                
+                {/* Company description paragraph */}
+                <p className="text-gray-400 mt-3 text-sm leading-relaxed">
+                  {exp.companyDescription}
                 </p>
               </motion.div>
             </motion.div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Menu,
   X,
@@ -9,8 +9,9 @@ import {
   Cpu,
   FolderGit2,
   Mail,
+  ChevronRight,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 /**
  * A responsive navigation bar component with a hamburger menu on mobile devices.
@@ -25,6 +26,7 @@ import { motion } from "framer-motion";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("#");
 
   const menuItems = [
     { name: "Home", icon: Home, href: "#", color: "#FF6B6B" },
@@ -41,39 +43,44 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
-/*************  ✨ Codeium Command ⭐  *************/
-/**
- * Updates the `isScrolled` state based on the current scroll position.
- * Sets `isScrolled` to true if the window's vertical scroll position is greater than 0,
- * indicating that the user has scrolled down the page.
- */
-
-/******  94f73f17-9745-4596-9e0d-87d970e0af92  *******/
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
+      
+      // Determine active section based on scroll position
+      const sections = menuItems.map(item => item.href.substring(1));
+      const currentSection = sections.find(section => {
+        if (section === "") return window.scrollY < 200;
+        const element = document.getElementById(section);
+        if (!element) return false;
+        
+        const rect = element.getBoundingClientRect();
+        return rect.top <= 100 && rect.bottom >= 100;
+      });
+      
+      setActiveSection(currentSection ? `#${currentSection}` : "#");
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [menuItems]);
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-secondary/90 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
+          ? "bg-dark-950/90 backdrop-blur-md shadow-lg py-2"
+          : "bg-transparent py-4"
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center">
           <motion.a
             href="#"
             className="flex items-center gap-2 group"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="relative w-10 h-10 bg-primary rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform">
-              <Code2 className="w-6 h-6 text-secondary" />
+            <div className="relative w-10 h-10 bg-gradient-to-br from-primary to-primary/70 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-primary/20">
+              <Code2 className="w-6 h-6 text-dark-950" />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 text-transparent bg-clip-text">
               Ramesh
@@ -81,76 +88,99 @@ const Navbar = () => {
           </motion.a>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
-            {menuItems.map((item, index) => (
-              <motion.a
-                key={item.name}
-                href={item.href}
-                className="text-gray-300 hover:text-primary transition flex items-center gap-2 group"
-                whileHover={{ y: -2 }}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-              >
-                <item.icon
-                  className="w-4 h-4 group-hover:rotate-12 transition-transform"
-                  style={{ color: item.color }}
-                />
-                <span
-                  className="hover:text-[color:var(--hover-color)]"
-                  style={{ "--hover-color": item.color } as React.CSSProperties}
-                >
-                  {item.name}
-                </span>
-              </motion.a>
-            ))}
+          <div className="hidden md:flex items-center">
+            <div className="bg-dark-800/50 backdrop-blur-md rounded-full px-2 py-1 border border-dark-700/30 shadow-inner">
+              {menuItems.map((item, index) => {
+                const isActive = activeSection === item.href;
+                return (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    className={`relative px-4 py-2 mx-1 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                      isActive 
+                        ? "text-dark-950" 
+                        : "text-gray-300 hover:text-white"
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                  >
+                    {isActive && (
+                      <motion.div
+                        className="absolute inset-0 rounded-full"
+                        layoutId="navIndicator"
+                        style={{ backgroundColor: item.color }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
+                    <item.icon
+                      className={`w-4 h-4 relative z-10 ${isActive ? "text-dark-950" : ""}`}
+                    />
+                    <span className="relative z-10">{item.name}</span>
+                  </motion.a>
+                );
+              })}
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden text-primary"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-dark-800/50 backdrop-blur-md border border-dark-700/30"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            {isMenuOpen ? <X /> : <Menu />}
+            {isMenuOpen ? <X className="text-primary" /> : <Menu className="text-primary" />}
           </motion.button>
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <motion.div
-            className="md:hidden bg-secondary/95 backdrop-blur-md"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {menuItems.map((item, index) => (
-                <motion.a
-                  key={item.name}
-                  href={item.href}
-                  className="flex items-center gap-3 px-3 py-2 rounded-md transition"
-                  style={{
-                    backgroundColor: `${item.color}10`,
-                    color: item.color,
-                  }}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  onClick={() => setIsMenuOpen(false)}
-                  whileHover={{
-                    backgroundColor: `${item.color}20`,
-                    x: 10,
-                  }}
-                >
-                  <item.icon className="w-5 h-5" />
-                  {item.name}
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-        )}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              className="md:hidden bg-dark-950/95 backdrop-blur-md mt-4 rounded-2xl border border-dark-800/50 shadow-xl overflow-hidden"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="p-4 space-y-2">
+                {menuItems.map((item, index) => {
+                  const isActive = activeSection === item.href;
+                  return (
+                    <motion.a
+                      key={item.name}
+                      href={item.href}
+                      className={`flex items-center justify-between p-3 rounded-xl transition-all ${
+                        isActive
+                          ? "bg-gradient-to-r"
+                          : "hover:bg-dark-800/50"
+                      }`}
+                      style={{
+                        backgroundImage: isActive 
+                          ? `linear-gradient(to right, ${item.color}20, transparent)` 
+                          : undefined,
+                        color: isActive ? item.color : "white",
+                        borderLeft: isActive ? `3px solid ${item.color}` : "3px solid transparent"
+                      }}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <div className="flex items-center gap-3">
+                        <item.icon className="w-5 h-5" />
+                        {item.name}
+                      </div>
+                      {isActive && <ChevronRight className="w-4 h-4" />}
+                    </motion.a>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );
