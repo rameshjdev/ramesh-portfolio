@@ -54,7 +54,7 @@ const Hero = () => {
             >
               <Github className="w-6 h-6" />
             </motion.a>
-            <motion.a 
+            {/* <motion.a 
               href="https://www.linkedin.com/in/ramesh-k-a95b55279/" 
               target='_blank'
               rel='noopener noreferrer'
@@ -63,7 +63,7 @@ const Hero = () => {
               whileTap={{ scale: 0.95 }}
             >
               <Linkedin className="w-6 h-6" />
-            </motion.a>
+            </motion.a> */}
             <motion.a 
               href="#contact" 
               className="p-2 bg-primary text-secondary rounded-full hover:bg-primary/80 transition"

@@ -14,7 +14,7 @@ const Footer = () => {
   
   const socialLinks = [
     { icon: Github, href: 'https://github.com/rameshjdev', Target: '_blank', rel: 'noopener noreferrer', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/ramesh-k-a95b55279/', Target: '_blank', rel: 'noopener noreferrer', label: 'LinkedIn',},
+    // { icon: Linkedin, href: 'https://www.linkedin.com/in/ramesh-k-a95b55279/', Target: '_blank', rel: 'noopener noreferrer', label: 'LinkedIn',},
   ];
 
   return (
