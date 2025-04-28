@@ -83,8 +83,15 @@ const skillCategories = [
  */
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 bg-gradient-to-b from-dark-900 to-dark-800">
-      <div className="container mx-auto px-4">
+    <section id="skills" className="py-20 bg-gradient-to-b from-dark-900 to-secondary relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary/5 blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-primary/10 blur-3xl"></div>
+        <div className="absolute top-1/3 right-1/4 w-40 h-40 rounded-full bg-primary/5 blur-2xl"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -105,28 +112,43 @@ const Skills = () => {
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={categoryIndex}
-              className="bg-dark-800/80 backdrop-blur-sm rounded-2xl overflow-hidden border border-dark-700/50 shadow-xl group hover:shadow-2xl transition-all duration-500"
+              className="bg-dark-800/40 backdrop-blur-lg rounded-3xl overflow-hidden border border-dark-700/30 shadow-xl group hover:shadow-2xl transition-all duration-500"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ 
                 y: -10,
+                boxShadow: `0 25px 50px -12px ${category.color}20`,
+                borderColor: `${category.color}40`,
                 transition: { duration: 0.3 }
               }}
             >
-              <div className="h-2" style={{ backgroundColor: category.color }}></div>
-              <div className="p-6">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 rounded-xl" style={{ backgroundColor: `${category.color}20` }}>
-                    <div style={{ color: category.color }}>
+              <div className="h-1.5 bg-gradient-to-r from-transparent via-primary to-transparent opacity-70"></div>
+              <div className="p-8">
+                <div className="flex items-center gap-4 mb-8">
+                  <motion.div 
+                    className="p-4 rounded-2xl relative"
+                    style={{ backgroundColor: `${category.color}15` }}
+                    whileHover={{
+                      scale: 1.1,
+                      backgroundColor: `${category.color}25`,
+                    }}
+                  >
+                    <div className="relative z-10" style={{ color: category.color }}>
                       {category.icon}
                     </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-white">{category.name}</h3>
+                    <div 
+                      className="absolute inset-0 rounded-2xl opacity-40"
+                      style={{ 
+                        background: `radial-gradient(circle at center, ${category.color}30 0%, transparent 70%)` 
+                      }}
+                    ></div>
+                  </motion.div>
+                  <h3 className="text-2xl font-bold text-white">{category.name}</h3>
                 </div>
 
-                <div className="space-y-5">
+                <div className="space-y-6">
                   {category.skills.map((skill, skillIndex) => (
                     <motion.div
                       key={skillIndex}
@@ -136,23 +158,29 @@ const Skills = () => {
                       transition={{ duration: 0.5, delay: 0.2 + (skillIndex * 0.1) }}
                       viewport={{ once: true }}
                     >
-                      <div className="flex justify-between mb-2">
+                      <div className="flex justify-between mb-3">
                         <span className="text-gray-200 font-medium">{skill.name}</span>
                         <motion.span 
-                          className="text-white font-semibold px-2 py-0.5 rounded-md text-sm"
-                          style={{ backgroundColor: category.color }}
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
+                          className="text-white font-semibold px-3 py-1 rounded-full text-sm"
+                          style={{ 
+                            background: `linear-gradient(90deg, ${category.color}90, ${category.color})`,
+                            boxShadow: `0 2px 10px ${category.color}50`
+                          }}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.5, delay: 0.5 + (skillIndex * 0.1) }}
                           viewport={{ once: true }}
                         >
                           {skill.level}%
                         </motion.span>
                       </div>
-                      <div className="h-2.5 bg-dark-700/70 rounded-full overflow-hidden">
+                      <div className="h-3 bg-dark-700/40 rounded-full overflow-hidden backdrop-blur-sm">
                         <motion.div
-                          className="h-full rounded-full"
-                          style={{ backgroundColor: category.color }}
+                          className="h-full rounded-full relative"
+                          style={{ 
+                            background: `linear-gradient(90deg, ${category.color}80, ${category.color})`,
+                            boxShadow: `0 0 10px ${category.color}70`
+                          }}
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level}%` }}
                           transition={{ 
@@ -161,16 +189,49 @@ const Skills = () => {
                             delay: 0.3 + (skillIndex * 0.1)
                           }}
                           viewport={{ once: true }}
-                        />
+                        >
+                          <div className="absolute top-0 left-0 w-full h-full opacity-50"
+                            style={{
+                              background: `linear-gradient(90deg, transparent, ${category.color}60, transparent)`,
+                              backgroundSize: '200% 100%',
+                              animation: 'shimmer 2s infinite'
+                            }}
+                          ></div>
+                        </motion.div>
                       </div>
                     </motion.div>
                   ))}
                 </div>
+                
+                <motion.div 
+                  className="mt-8 w-full h-px bg-gradient-to-r from-transparent via-dark-600 to-transparent"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  viewport={{ once: true }}
+                ></motion.div>
+                
+                <motion.div
+                  className="mt-6 text-center"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                </motion.div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+      
+      {/* Add shimmer animation */}
+      <style jsx global>{`
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+      `}</style>
     </section>
   );
 };

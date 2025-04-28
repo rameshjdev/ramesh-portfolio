@@ -162,8 +162,8 @@ const Projects = () => {
               <div className="relative">
                 <div className="h-80 overflow-hidden">
                   <motion.img 
-                    src={selectedProject.image} 
-                    alt={selectedProject.title}
+                    src={(selectedProject as typeof projects[0]).image}
+                    alt={(selectedProject as typeof projects[0]).title}
                     className="w-full h-full object-cover"
                     initial={{ scale: 1.2, opacity: 0.5 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -189,7 +189,7 @@ const Projects = () => {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
                   >
-                    {selectedProject.title}
+                    {(selectedProject as typeof projects[0]).title}
                   </motion.div>
                 </div>
               </div>
@@ -205,7 +205,7 @@ const Projects = () => {
                     <span className="text-primary">#</span> Overview
                   </h4>
                   <p className="text-gray-300 text-lg leading-relaxed bg-dark-700/30 p-6 rounded-lg border border-dark-600/50">
-                    {selectedProject.longDescription}
+{(selectedProject as typeof projects[0])?.longDescription}
                   </p>
                 </motion.div>
                 
@@ -223,7 +223,7 @@ const Projects = () => {
                     </div>
                     <div className="p-5">
                       <div className="flex flex-wrap gap-3">
-                        {selectedProject.technologies.map((tech, index) => (
+                        {(selectedProject as typeof projects[0]).technologies.map((tech, index) => (
                           <motion.span 
                             key={index}
                             className="px-4 py-2 bg-primary/10 text-primary rounded-lg text-sm font-medium"
@@ -252,7 +252,7 @@ const Projects = () => {
                     </div>
                     <div className="p-5">
                       <div className="grid grid-cols-1 gap-3">
-                        {selectedProject.features.map((feature, index) => (
+                        {(selectedProject as typeof projects[0]).features.map((feature, index) => (
                           <motion.div 
                             key={index} 
                             className="flex items-center text-gray-300 bg-dark-700/50 p-3 rounded-lg"
