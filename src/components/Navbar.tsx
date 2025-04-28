@@ -79,24 +79,30 @@ const Navbar = () => {
             className="flex items-center gap-2 group"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="relative w-10 h-10 bg-gradient-to-br from-primary to-primary/70 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-primary/20">
-              <Code2 className="w-6 h-6 text-dark-950" />
+            <div className="relative w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-primary/20 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary via-purple-500 to-indigo-600 opacity-90"></div>
+              <Code2 className="w-7 h-7 text-white relative z-10" />
+              <div className="absolute -bottom-4 -right-4 w-8 h-8 bg-yellow-500/30 rounded-full blur-xl"></div>
+              <div className="absolute -top-4 -left-4 w-8 h-8 bg-indigo-500/30 rounded-full blur-xl"></div>
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 text-transparent bg-clip-text">
-              Ramesh
-            </span>
+            <div className="flex flex-col">
+              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-500 text-transparent bg-clip-text leading-tight">
+                Ramesh
+              </span>
+              <span className="text-xs text-gray-400 -mt-1">Kolukuluri</span>
+            </div>
           </motion.a>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center">
-            <div className="bg-dark-800/50 backdrop-blur-md rounded-full px-2 py-1 border border-dark-700/30 shadow-inner">
+            <div className="bg-dark-800/50 backdrop-blur-md rounded-full px-3 py-1.5 border border-dark-700/30 shadow-inner">
               {menuItems.map((item, index) => {
                 const isActive = activeSection === item.href;
                 return (
                   <motion.a
                     key={item.name}
                     href={item.href}
-                    className={`relative px-4 py-2 mx-1 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                    className={`relative px-3 py-1.5 mx-1 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-1.5 ${
                       isActive 
                         ? "text-dark-950" 
                         : "text-gray-300 hover:text-white"
