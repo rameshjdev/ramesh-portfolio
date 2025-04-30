@@ -30,7 +30,7 @@ const Contact = () => {
     try {
       await emailjs.sendForm(
         'service_gnqey7r', // Replace with your EmailJS service ID
-        'template_o89gkyu', // Replace with your EmailJS template ID
+        'template_2t8ec0q', // Replace with your EmailJS template ID
         form.current,
         'tDD54-RIWy48tC4Ye' // Replace with your EmailJS public key
       );
@@ -40,11 +40,21 @@ const Contact = () => {
         message: 'Message sent successfully! I will get back to you soon.',
       });
       form.current.reset();
+      
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus({ type: null, message: '' });
+      }, 2000);
     } catch (error) {
       setSubmitStatus({
         type: 'error',
         message: 'Failed to send message. Please try again later.',
       });
+      
+      // Clear error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus({ type: null, message: '' });
+      }, 5000);
     } finally {
       setIsSubmitting(false);
     }
@@ -160,7 +170,7 @@ const Contact = () => {
                     <input
                       type="text"
                       id="user_name"
-                      name="user_name"
+                      name="from_name"
                       required
                       className="w-full px-5 py-4 bg-dark-900/50 border border-dark-700/50 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-white peer pt-7 outline-none transition-all"
                       placeholder=" "
@@ -183,7 +193,7 @@ const Contact = () => {
                     <input
                       type="email"
                       id="user_email"
-                      name="user_email"
+                      name="from_email"
                       required
                       className="w-full px-5 py-4 bg-dark-900/50 border border-dark-700/50 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-white peer pt-7 outline-none transition-all"
                       placeholder=" "

@@ -156,11 +156,37 @@ const Projects = () => {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 10 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="bg-dark-800 rounded-xl max-w-5xl w-full max-h-[90vh] overflow-y-auto border border-dark-700/50 shadow-2xl"
+              className="bg-dark-800 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden border border-dark-700/50 shadow-2xl flex flex-col"
               onClick={e => e.stopPropagation()}
             >
-              <div className="relative">
-                <div className="h-80 overflow-hidden">
+              {/* Header with close button */}
+              <div className="relative flex items-center justify-between p-6 border-b border-dark-700/50">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="flex items-center"
+                >
+                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                    <span className="text-primary text-xl font-bold">#</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">{(selectedProject as typeof projects[0]).title}</h3>
+                </motion.div>
+                
+                <motion.button
+                  className="p-2 rounded-full bg-dark-700/50 hover:bg-primary/20 transition-colors duration-300 flex items-center justify-center"
+                  onClick={() => setSelectedProject(null)}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <X className="w-5 h-5 text-white" />
+                </motion.button>
+              </div>
+              
+              {/* Content area with custom scrollbar */}
+              <div className="overflow-y-auto custom-scrollbar flex-grow">
+                {/* Hero image section */}
+                <div className="relative h-64 sm:h-80 overflow-hidden">
                   <motion.img 
                     src={(selectedProject as typeof projects[0]).image}
                     alt={(selectedProject as typeof projects[0]).title}
@@ -169,68 +195,53 @@ const Projects = () => {
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 1.5 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/80 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-800 via-dark-800/70 to-transparent"></div>
                 </div>
                 
-                <motion.button
-                  className="absolute top-6 right-6 p-3 bg-dark-800/80 backdrop-blur-sm rounded-full border border-dark-700/50 hover:bg-dark-700 transition-colors duration-300"
-                  onClick={() => setSelectedProject(null)}
-                  whileHover={{ scale: 1.1, rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                >
-                  <X className="w-6 h-6 text-primary" />
-                </motion.button>
-                
-                <div className="absolute bottom-0 left-0 w-full p-8">
-                  <motion.div
-                    className="inline-block bg-primary text-dark-900 rounded-lg px-6 py-2 font-bold text-xl mb-4 shadow-lg"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    {(selectedProject as typeof projects[0]).title}
-                  </motion.div>
-                </div>
-              </div>
-              
-              <div className="p-8">
-                <motion.div 
-                  className="mb-8"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <h4 className="text-2xl font-semibold mb-4 text-white">
-                    <span className="text-primary">#</span> Overview
-                  </h4>
-                  <p className="text-gray-300 text-lg leading-relaxed bg-dark-700/30 p-6 rounded-lg border border-dark-600/50">
-{(selectedProject as typeof projects[0])?.longDescription}
-                  </p>
-                </motion.div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                {/* Project details */}
+                <div className="p-8">
+                  {/* Overview section */}
                   <motion.div 
-                    className="bg-dark-700/30 rounded-lg border border-dark-600/50 overflow-hidden"
+                    className="mb-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <div className="flex items-center mb-4">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+                        <span className="text-primary font-bold">01</span>
+                      </div>
+                      <h4 className="text-xl font-semibold text-white">Overview</h4>
+                    </div>
+                    <div className="pl-11">
+                      <p className="text-gray-300 leading-relaxed bg-dark-700/30 p-6 rounded-xl border border-dark-600/50">
+                        {(selectedProject as typeof projects[0])?.longDescription}
+                      </p>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Technologies section */}
+                  <motion.div 
+                    className="mb-8"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                   >
-                    <div className="bg-dark-600/50 px-4 py-3 border-b border-dark-500/30">
-                      <h4 className="text-xl font-semibold text-white">
-                        <span className="text-primary mr-2">#</span> Technologies Used
-                      </h4>
+                    <div className="flex items-center mb-4">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+                        <span className="text-primary font-bold">02</span>
+                      </div>
+                      <h4 className="text-xl font-semibold text-white">Technologies</h4>
                     </div>
-                    <div className="p-5">
+                    <div className="pl-11">
                       <div className="flex flex-wrap gap-3">
                         {(selectedProject as typeof projects[0]).technologies.map((tech, index) => (
                           <motion.span 
                             key={index}
-                            className="px-4 py-2 bg-primary/10 text-primary rounded-lg text-sm font-medium"
+                            className="px-4 py-2 bg-dark-700/50 text-white border border-dark-600/50 rounded-lg text-sm font-medium hover:bg-primary/20 hover:text-primary hover:border-primary/30 transition-colors duration-300"
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.4 + (index * 0.05) }}
-                            whileHover={{ scale: 1.05, backgroundColor: "rgba(var(--color-primary-rgb), 0.2)" }}
+                            transition={{ delay: 0.4 + (index * 0.03) }}
                           >
                             {tech}
                           </motion.span>
@@ -238,36 +249,76 @@ const Projects = () => {
                       </div>
                     </div>
                   </motion.div>
-
-                  <motion.div 
-                    className="bg-dark-700/30 rounded-lg border border-dark-600/50 overflow-hidden"
+                  
+                  {/* Features section */}
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
                   >
-                    <div className="bg-dark-600/50 px-4 py-3 border-b border-dark-500/30">
-                      <h4 className="text-xl font-semibold text-white">
-                        <span className="text-primary mr-2">#</span> Key Features
-                      </h4>
+                    <div className="flex items-center mb-4">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+                        <span className="text-primary font-bold">03</span>
+                      </div>
+                      <h4 className="text-xl font-semibold text-white">Key Features</h4>
                     </div>
-                    <div className="p-5">
-                      <div className="grid grid-cols-1 gap-3">
+                    <div className="pl-11">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {(selectedProject as typeof projects[0]).features.map((feature, index) => (
                           <motion.div 
                             key={index} 
-                            className="flex items-center text-gray-300 bg-dark-700/50 p-3 rounded-lg"
+                            className="flex items-center text-gray-300 bg-dark-700/30 p-4 rounded-xl border border-dark-600/50 hover:border-primary/30 hover:bg-dark-700/50 transition-all duration-300"
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.6 + (index * 0.05) }}
-                            whileHover={{ backgroundColor: "rgba(var(--color-primary-rgb), 0.1)" }}
                           >
-                            <div className="w-3 h-3 rounded-full bg-primary mr-3 flex-shrink-0"></div>
+                            <div className="w-2 h-8 rounded-full bg-primary mr-4 flex-shrink-0"></div>
                             <span>{feature}</span>
                           </motion.div>
                         ))}
                       </div>
                     </div>
                   </motion.div>
+                </div>
+              </div>
+              
+              {/* Footer with action buttons */}
+              <div className="border-t border-dark-700/50 p-6 bg-dark-700/30">
+                <div className="flex flex-wrap justify-end gap-4">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-6 py-3 rounded-xl bg-dark-700/50 text-white hover:bg-dark-600 transition-colors duration-300"
+                    onClick={() => setSelectedProject(null)}
+                  >
+                    Close
+                  </motion.button>
+                  
+                  {(selectedProject as typeof projects[0]).github && (
+                    <motion.a
+                      href={(selectedProject as typeof projects[0]).github as string}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-6 py-3 rounded-xl bg-primary/80 text-dark-900 hover:bg-primary transition-colors duration-300 font-medium"
+                    >
+                      View Code
+                    </motion.a>
+                  )}
+                  
+                  {(selectedProject as typeof projects[0]).live && (
+                    <motion.a
+                      href={(selectedProject as typeof projects[0]).live as string}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-accent-primary text-dark-900 hover:opacity-90 transition-opacity duration-300 font-medium"
+                    >
+                      Live Demo
+                    </motion.a>
+                  )}
                 </div>
               </div>
             </motion.div>
