@@ -96,7 +96,7 @@ const Contact = () => {
             >
               <div className="bg-dark-800/40 backdrop-blur-md p-8 rounded-2xl border border-dark-700/50 shadow-xl h-full">
                 <h3 className="text-2xl font-bold text-white mb-6">Let's Connect</h3>
-                <p className="text-gray-300 mb-10 leading-relaxed">
+                <p className="text-gray-300 mb-10 leading-relaxed text-align-justify">
                   Whether you're interested in collaborating, discussing a professional opportunity, or simply want to connect, I'd love to hear from you.
                 </p>
                 

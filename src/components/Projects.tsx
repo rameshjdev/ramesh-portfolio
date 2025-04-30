@@ -73,8 +73,9 @@ const projects = [
  * @returns {JSX.Element} The projects section with a modal for project details.
  */
 
-const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
+const Projects = (): JSX.Element => {
+  // Update the state type to be either null or a Project
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
 
   return (
     <>
@@ -188,8 +189,8 @@ const Projects = () => {
                 {/* Hero image section */}
                 <div className="relative h-64 sm:h-80 overflow-hidden">
                   <motion.img 
-                    src={(selectedProject as typeof projects[0]).image}
-                    alt={(selectedProject as typeof projects[0]).title}
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
                     className="w-full h-full object-cover"
                     initial={{ scale: 1.2, opacity: 0.5 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -215,7 +216,7 @@ const Projects = () => {
                     </div>
                     <div className="pl-11">
                       <p className="text-gray-300 leading-relaxed bg-dark-700/30 p-6 rounded-xl border border-dark-600/50">
-                        {(selectedProject as typeof projects[0])?.longDescription}
+                        {selectedProject?.longDescription}
                       </p>
                     </div>
                   </motion.div>
@@ -294,9 +295,9 @@ const Projects = () => {
                     Close
                   </motion.button>
                   
-                  {(selectedProject as typeof projects[0]).github && (
+                  {(selectedProject as { github?: string }).github && (
                     <motion.a
-                      href={(selectedProject as typeof projects[0]).github as string}
+                      href={(selectedProject as { github?: string }).github || '#'}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
@@ -307,9 +308,9 @@ const Projects = () => {
                     </motion.a>
                   )}
                   
-                  {(selectedProject as typeof projects[0]).live && (
+                  {(selectedProject as { live?: string }).live && (
                     <motion.a
-                      href={(selectedProject as typeof projects[0]).live as string}
+                      href={(selectedProject as { live?: string }).live || '#'}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
